@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fare-model-deployment
+  labels:
+    app: fare-model
+  namespace: pyconlt
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: fare-model
+  template:
+    metadata:
+      labels:
+        app: fare-model
+    spec:
+      containers:
+      - name: fare-model
+        image: fare-predictor:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 80

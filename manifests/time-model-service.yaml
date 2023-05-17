@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: time-model-service
+  namespace: pyconlt
+spec:
+  selector:
+    app: time-model
+  ports:
+  - name: name-of-service-port
+    protocol: TCP
+    port: 80
+    targetPort: 80
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: time-model-service-nodeport
+  namespace: pyconlt
+spec:
+  type: LoadBalancer
+  selector:
+    app: time-model
+  ports:
+  - name: time-of-service-port
+    protocol: TCP
+    port: 8087
+    targetPort: 80
